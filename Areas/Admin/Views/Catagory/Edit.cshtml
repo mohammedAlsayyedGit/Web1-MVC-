@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Areas.Admin.Models.Catagory
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="text-center">
+
+<h4>تحديث التصنيف</h4>
+</div>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex align-items-center">
+                <label asp-for="IDCata" class="control-label w-50">رقم التصنيف </label>
+
+                <input asp-for="IDCata" readonly class="form-control mx-3"/>
+            </div>
+
+            <div class="form-group d-flex align-items-center" >
+                <label asp-for="catagoryName" class="control-label w-50">اسم التصنيف</label>
+                <input asp-for="catagoryName" class="form-control mx-3" />
+                <span asp-validation-for="catagoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="تحديث" class="btn btn-primary w-100" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-danger">الرجوع الى القائمة الرئيسية</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

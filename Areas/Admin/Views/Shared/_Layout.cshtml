@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Templete</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+    <!-- MDBootstrap Datatables  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.css" />
+
+    <style>
+        * {
+            direction: rtl
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container d-block">
+                <a class="navbar-brand d-block" asp-area="" asp-controller="Home" asp-action="Index">الرئيسية</a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 -حقوق الطبع محفوظة -
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+
+
+        // ازالة الخطين
+        let x = document.querySelector('.btn.btn-dark');
+        let w = x.parentElement;
+        w.nextSibling.textContent = ""
+
+        // تعديل على الجدول
+
+
+
+        // Basic example
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+                "paging": true,
+                "pagingType": "simple_numbers",
+                "ordering": "false"
+                // false to disable pagination (or any other option)
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+        window.onload = function () {
+            let t = document.querySelector('.dataTables_length')
+            let z = t.firstChild
+
+            z.firstChild.textContent = " عرض  :";
+            z.lastChild.textContent = "";
+
+            let op = document.createElement('option')
+            op.value = "5";
+            op.textContent = 5;
+
+
+            z.childNodes[1].prepend(op);
+            let i = z.childNodes[1];
+
+
+            i.style.margin = "0 10px 0 0"
+
+
+
+
+            let se = document.querySelector('.dataTables_filter').firstChild;
+
+            se.firstChild.textContent = " بحث : "
+
+            se.childNodes[1].style.margin = "0 10px 0 0 ";
+        }
+
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+</body>
+</html>

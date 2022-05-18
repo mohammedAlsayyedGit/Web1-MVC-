@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.Catagory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+
+<div class="text-center"><h3>قائمة التصنيفات </h3></div>
+<hr />
+
+<div class="my-3"> 
+    <a class="btn btn-dark"  asp-controller="Home" asp-action="listOfprodects"> المنتجات</a>
+    <a class="btn btn-dark" asp-controller="Catagory" asp-action="Create"> إضافة تصنيف</a>
+
+</div>
+
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+    <thead>
+        <tr class="text-center">
+            <th class="th-sm"> رقم التصنيف</th>
+            <th class="th-sm" data-sortable="false">اسم التصنيف</th>\
+            <th class="th-sm" data-sortable="false">حذف التصنيف</th>
+            <th class="th-sm" data-sortable="false">تعديل التصنيف</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Catagory catagory in Model)
+            {
+                <tr class="text-center">
+                    <td>@catagory.IDCata  </td>
+                    <td>@catagory.catagoryName  </td>
+                    
+                    <td><a  asp-controller="Catagory" asp-action="Delete" asp-route-IDCata="@catagory.IDCata" class="btn btn-danger" onclick="return confirm('Are you sure ?')">حذف</a></td>|
+                    <td><a asp-controller="Catagory" asp-action="Edit" asp-route-IDCata="@catagory.IDCata" class="btn btn-danger">تعديل</a></td>
+                </tr>
+            }
+
+        }
+</table>
+
+

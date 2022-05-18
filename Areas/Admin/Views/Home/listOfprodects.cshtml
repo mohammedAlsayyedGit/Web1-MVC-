@@ -1,0 +1,46 @@
+﻿@model List<WebApplication1.Areas.Admin.Models.products>
+
+
+
+<div class="text-center"><h3>قائمة المنتجات </h3></div>
+<hr/>
+
+<div class="my-3">
+    <a class="btn btn-dark" asp-action="Create">   إضافة منتج</a>
+    <a class="btn btn-dark" asp-controller="Catagory" asp-action="Index"> التصنيفات</a>
+
+</div>
+
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%">
+    <thead>
+        <tr class="text-center">
+            <th class="th-sm"> رقم المنتج</th>
+            <th class="th-sm" data-sortable="false">اسم المنتج</th>
+            <th class="th-sm">السعر بالشيكل</th>
+            <th class="th-sm" data-sortable="false">التصنيف</th>
+            <th class="th-sm" data-sortable="false">صورة المنتج</th>
+            <th class="th-sm" data-sortable="false">حذف المنتج</th>
+            <th class="th-sm" data-sortable="false">تعديل المنتج</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr class="text-center">
+                    <td>@Model[i].PCode  </td>
+                    <td>@Model[i].PTitle</td>
+                    <td>@Model[i].Price</td>
+                    <td>@Model[i].Catagory.catagoryName</td>
+
+                    <td><img height="50px" width="50px" src=~/images/products/@Model[i].Photo /></td>
+                    <td><a asp-action="Delete" asp-route-PCODE="@Model[i].PCode" class="btn btn-danger" onclick="return confirm('Are you sure ?')">حذف</a></td>|
+                    <td><a asp-action="Edit" asp-route-PCODE="@Model[i].PCode" class="btn btn-danger">تعديل</a></td>
+                </tr>
+            }
+
+        }
+</table>
+
+

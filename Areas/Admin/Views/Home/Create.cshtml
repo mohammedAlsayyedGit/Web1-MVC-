@@ -1,0 +1,85 @@
+﻿@model WebApplication1.Areas.Admin.Models.products
+@{
+    ViewData["Title"] = "أضافة منتج";
+}
+
+<h3 class="text-center">إضافة منتج جديد الى السوق </h3>
+<hr />
+<div class="row flex-column-reverse flex-md-row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex align-items-center" style="text-align:initial">
+                <label asp-for="PCode" class="control-label w-25">رقم المنتج </label>
+                <input asp-for="PCode" disabled class="form-control" />
+                @*<span asp-validation-for="PCode" class="text-danger"></span>*@
+            </div>
+            <div class="form-group d-flex align-items-center" style="text-align:initial">
+                <label asp-for="PTitle" class="control-label w-25">اسم المنتج</label>
+                <input asp-for="PTitle" class="form-control" />
+                <span asp-validation-for="PTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex align-items-center" style="text-align:initial">
+                <label asp-for="Price" class="control-label w-25">السعر</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-flex align-items-center" style="text-align:initial">
+                <label asp-for="Description" class="control-label w-25">الوصف</label>
+                <textarea asp-for="Description" class="word form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-flex align-items-center" style="text-align:initial">
+                <label asp-for="CatagoryId" class="control-label w-25">التصنيف</label>
+                <select asp-for="CatagoryId" asp-items="ViewBag.CategoryDropDown " class="w-100 p-2">
+                    <option selected disabled>Select </option>
+                </select>
+                <span asp-validation-for="CatagoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex align-items-center" style="text-align:initial">
+
+                <label asp-for="Photo" class="control-label w-25">الصورة</label>
+                <input type="file" accept="image/*" name="images" class="form-control" id="uploadBox"/>
+                <span asp-validation-for="Photo" class="text-danger"></span>
+
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="إضافة " class="btn btn-primary w-100 mt-3" />
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-8 justify-content-between align-items-center d-flex">
+        <img src="~/assets/img/navbar-logo.svg" />
+    </div>
+</div>
+
+<div>
+    <a asp-action="listOfprodects" class="text-danger">الرجوع الى قائمة المنتجات</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    $(document).ready(function () {
+        $('.word').summernote({
+            height: 235
+        })
+    })
+
+    function validateInput() {
+        if (document.getElementById("uploadBox").value == "") {
+            Swal.fire(
+                'Error!',
+                'Please Upload Image!',
+                'Error'
+            )
+            return false;
+        }
+        return true;
+    }
+</script>
+}

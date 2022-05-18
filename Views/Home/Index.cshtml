@@ -1,0 +1,199 @@
+﻿@model List<products>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">المنتجات</h2>
+            <h2 class="section-subheading my-3" style="color:#ffc800">
+               أحدث المنتجات لدينا
+            </h2>
+        </div>
+        <div class="row">
+
+            @{
+                for (int i = Model.Count()-1 ;  i >0; i--)
+
+                {
+
+                    var x = Model[i].Price + 13;
+
+
+
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item border rounded ">
+                            <a class="portfolio-link"
+                             
+                              href="https://wa.me/+972592541090">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content">
+                                        اطلب الان<br /> عبر الدايركت
+                                
+                                    </div>
+                                </div>
+                                <img class="img-fluid"
+
+                                     src="~/images/products/0c013df9-549d-4c63-9ca1-e4c41b883167.jpeg"
+                                     alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">@Model[i].PTitle</div>
+                                <div class="portfolio-caption-subheading  d-flex justify-content-between align-items-center">
+                                    <h4 class="text-muted"> @Model[i].Catagory.catagoryName</h4>
+                                    <div>
+                                        <h3 class="text-warning">@Model[i].Price</h3>
+                                        <strike class="text-muted">@x </strike>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                               
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <div class="container">
+
+        <div class="swiper mySwiper  text-center">
+            <div class="swiper-wrapper">
+
+
+                @for (int i = Model.Count()-1; i >= 0; i--)
+                {
+
+                    var x = Model[i].Price + 13;
+
+                <div class=" swiper-slide text-center p-0 m-0">
+                    <img src="~/images/products/0c013df9-549d-4c63-9ca1-e4c41b883167.jpeg"
+ class="w-75 h-75 img-fluid" />
+
+
+                    <h2 class="my-3">@Model[i].PTitle</h2>
+
+                    <h2 class="text-decoration-underline fs-5">التصنيف : @Model[i].Catagory.catagoryName</h2>
+                    <p class="word">
+                        @Html.Raw(Model[i].Description)
+
+                    </p>
+                    <div class=" m-0 text-center">
+                        <h2 class="mx-3 d-inline-block">@Model[i].Price <span class="fs-6">شيكل</span></h2>
+                        <span>
+                            بدل
+                            <strike class="fs-4">@x </strike>
+                        </span>
+
+
+                    </div>
+
+                </div>
+                }
+
+            </div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- Swiper -->
+<!--<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">Slide 4</div>
+        <div class="swiper-slide">Slide 5</div>
+        <div class="swiper-slide">Slide 6</div>
+        <div class="swiper-slide">Slide 7</div>
+        <div class="swiper-slide">Slide 8</div>
+        <div class="swiper-slide">Slide 9</div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>-->
+
+<!-- Swiper JS -->
+
+
+
+
+
+
+@section Scripts {
+    <script>
+        var x = new Swiper(".mySwiper", {
+
+
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-next",
+                prevEl: ".swiper-pre",
+            },
+            // Default parameters
+            slidesPerView: 1,
+            spaceBetween: 10,
+            // Responsive breakpoints
+            breakpoints: {
+                // when window width is >= 320px
+                500: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                // when window width is >= 480px
+                850: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                // when window width is >= 640px
+                950: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+            },
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
